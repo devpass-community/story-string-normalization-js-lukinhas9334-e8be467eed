@@ -1,0 +1,21 @@
+name: Devpass checks
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Evercode checks
+        uses: 'evercodeinc/gitaction-testfile@v1'
+        with:
+          file_name: 'remove-accent.test.js'
